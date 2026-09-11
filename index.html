@@ -1,51 +1,654 @@
 <!doctype html>
 <html lang="it">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>ClockEasy – Privacy Policy</title>
-  <style>
-    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;max-width:900px;margin:40px auto;padding:0 16px;line-height:1.5}
-    h1,h2{line-height:1.2}
-    .muted{color:#666}
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ClockEasy – Informativa sulla Privacy</title>
+<meta name="description" content="Informativa sulla privacy GDPR per l'app ClockEasy: presenze, documenti, whistleblowing e comunicazioni interne.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  :root{
+    --bg:#F7F6FB;
+    --surface:#FFFFFF;
+    --surface-2:#F0EEF8;
+    --text:#211D30;
+    --muted:#6B6580;
+    --border:#E3E0ED;
+    --gold:#B87A26;
+    --gold-soft:#F3E4CC;
+    --purple:#5A46C7;
+    --purple-soft:#E7E3FA;
+    --focus:#5A46C7;
+    --shadow: 0 1px 2px rgba(33,29,48,.04), 0 8px 24px -12px rgba(33,29,48,.12);
+    color-scheme: light dark;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#16141F;
+      --surface:#1E1B29;
+      --surface-2:#262233;
+      --text:#EDEAF6;
+      --muted:#A79FC2;
+      --border:#332E45;
+      --gold:#E3A75C;
+      --gold-soft:#3A2E1C;
+      --purple:#9C8CF0;
+      --purple-soft:#2C2645;
+      --focus:#9C8CF0;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 28px -12px rgba(0,0,0,.5);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#16141F;
+    --surface:#1E1B29;
+    --surface-2:#262233;
+    --text:#EDEAF6;
+    --muted:#A79FC2;
+    --border:#332E45;
+    --gold:#E3A75C;
+    --gold-soft:#3A2E1C;
+    --purple:#9C8CF0;
+    --purple-soft:#2C2645;
+    --focus:#9C8CF0;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 28px -12px rgba(0,0,0,.5);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:"Public Sans", system-ui, -apple-system, sans-serif;
+    font-size:16px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:"Fraunces", Georgia, serif;
+    font-weight:600;
+    text-wrap:balance;
+    color:var(--text);
+  }
+  a{ color:var(--purple); }
+  a:focus-visible, button:focus-visible, summary:focus-visible{
+    outline:2px solid var(--focus);
+    outline-offset:3px;
+    border-radius:4px;
+  }
+  code, .mono, .fact-value{
+    font-family:"JetBrains Mono", ui-monospace, monospace;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ---------- shell ---------- */
+  .shell{
+    max-width:1180px;
+    margin:0 auto;
+    padding: 28px 24px 80px;
+    display:grid;
+    grid-template-columns: 248px minmax(0,1fr);
+    gap:56px;
+  }
+  @media (max-width: 900px){
+    .shell{ grid-template-columns: 1fr; gap:0; padding:16px 16px 64px; }
+  }
+
+  /* ---------- masthead ---------- */
+  .masthead{
+    grid-column: 1 / -1;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    padding: 8px 0 28px;
+    border-bottom:1px solid var(--border);
+    margin-bottom: 8px;
+  }
+  .brand{ display:flex; align-items:center; gap:10px; }
+  .brand-mark{
+    width:34px; height:34px; border-radius:9px;
+    background:linear-gradient(135deg, var(--gold), var(--purple));
+    display:flex; align-items:center; justify-content:center;
+    color:#fff; font-family:"Fraunces",serif; font-weight:700; font-size:15px;
+    flex:none;
+  }
+  .brand-name{ font-weight:700; letter-spacing:.01em; font-size:15px; }
+  .masthead-meta{
+    font-size:13px; color:var(--muted); text-align:right;
+  }
+
+  /* ---------- sidebar / TOC ---------- */
+  .toc-wrap{ min-width:0; }
+  .toc{
+    position:sticky;
+    top:24px;
+  }
+  .toc-title{
+    font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--muted); margin: 0 0 12px 2px;
+  }
+  .toc ol{
+    list-style:none; margin:0; padding:0;
+    display:flex; flex-direction:column; gap:2px;
+    border-left:1px solid var(--border);
+  }
+  .toc a{
+    display:block;
+    text-decoration:none;
+    color:var(--muted);
+    font-size:13.5px;
+    padding:6px 0 6px 14px;
+    margin-left:-1px;
+    border-left:1px solid transparent;
+    transition: color .15s ease, border-color .15s ease;
+  }
+  .toc a span.n{
+    font-family:"JetBrains Mono",monospace;
+    color:var(--muted);
+    margin-right:8px;
+    font-size:12px;
+  }
+  .toc a:hover{ color:var(--text); }
+  .toc a.active{
+    color:var(--text);
+    font-weight:600;
+    border-left:1px solid var(--purple);
+  }
+  .toc a.active span.n{ color:var(--purple); }
+
+  @media (max-width:900px){
+    .toc-wrap{ margin-bottom:8px; }
+    .toc{ position:relative; top:0; }
+    .toc ol{
+      flex-direction:row; flex-wrap:nowrap; overflow-x:auto;
+      border-left:none; border-bottom:1px solid var(--border);
+      padding-bottom:10px; gap:4px;
+      -webkit-overflow-scrolling:touch;
+    }
+    .toc a{
+      white-space:nowrap; border-left:none;
+      border-bottom:2px solid transparent;
+      padding:6px 10px; margin-left:0;
+      background:var(--surface-2); border-radius:8px;
+    }
+    .toc a.active{ border-left:none; border-bottom-color:var(--purple); background:var(--purple-soft); }
+  }
+
+  /* ---------- main content ---------- */
+  main{ min-width:0; max-width: 700px; }
+
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:12px; font-weight:600; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--purple);
+    background:var(--purple-soft);
+    border-radius:999px;
+    padding:5px 12px;
+    margin-bottom:18px;
+  }
+  h1.title{
+    font-size:clamp(28px, 4vw, 38px);
+    line-height:1.12;
+    margin: 0 0 10px;
+  }
+  .subtitle{
+    color:var(--muted);
+    font-size:16px;
+    max-width:56ch;
+    margin: 0 0 28px;
+  }
+
+  /* fact card */
+  .fact-card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:16px;
+    box-shadow:var(--shadow);
+    padding:20px 22px;
+    margin-bottom:44px;
+  }
+  .fact-grid{
+    display:grid;
+    grid-template-columns: repeat(2, minmax(0,1fr));
+    gap: 16px 28px;
+  }
+  @media (max-width:520px){ .fact-grid{ grid-template-columns: 1fr; } }
+  .fact-label{
+    font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--muted); margin-bottom:4px;
+  }
+  .fact-value{ font-size:14.5px; color:var(--text); }
+  .fact-value a{ color:var(--text); text-decoration-color:var(--border); }
+
+  /* sections */
+  section.doc-section{
+    padding-top:40px;
+    margin-top:0;
+    border-top:1px solid var(--border);
+    scroll-margin-top: 20px;
+  }
+  section.doc-section:first-of-type{ border-top:none; padding-top:0; }
+
+  .sec-head{
+    display:flex; align-items:baseline; gap:12px;
+    margin-bottom:14px;
+  }
+  .sec-num{
+    font-family:"JetBrains Mono", monospace;
+    font-size:14px;
+    color:var(--gold);
+    flex:none;
+  }
+  h2{ font-size:22px; margin:0; }
+  h3{ font-size:16.5px; margin: 22px 0 8px; }
+
+  p{ margin: 0 0 14px; }
+  ul, ol.plain{ margin: 0 0 16px; padding-left: 22px; }
+  li{ margin-bottom:6px; }
+  strong{ color:var(--text); }
+
+  .lede{
+    background: var(--surface);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 12px 12px 0;
+    padding: 14px 18px;
+    margin: 0 0 20px;
+    font-size: 14.5px;
+    color: var(--muted);
+  }
+  .lede strong{ color:var(--text); }
+  .lede::before{
+    content:"In sintesi";
+    display:block;
+    font-family:"Fraunces",serif;
+    font-weight:600;
+    font-size: 12px;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    color: var(--gold);
+    margin-bottom:6px;
+  }
+
+  .table-wrap{
+    overflow-x:auto;
+    border:1px solid var(--border);
+    border-radius:12px;
+    margin: 4px 0 20px;
+    box-shadow: var(--shadow);
+    background:var(--surface);
+  }
+  table{
+    border-collapse:collapse;
+    width:100%;
+    min-width: 480px;
+    font-size:14px;
+  }
+  th, td{
+    text-align:left;
+    padding: 11px 14px;
+    border-bottom:1px solid var(--border);
+    vertical-align: top;
+  }
+  th{
+    font-size:11px; letter-spacing:.05em; text-transform:uppercase;
+    color:var(--muted); font-weight:700;
+    background:var(--surface-2);
+  }
+  tr:last-child td{ border-bottom:none; }
+  td:first-child, th:first-child{ white-space:nowrap; font-weight:600; }
+
+  .pill{
+    display:inline-block;
+    font-size:11.5px; font-weight:600;
+    padding:2px 9px;
+    border-radius:999px;
+    background:var(--gold-soft);
+    color:var(--gold);
+    white-space:nowrap;
+  }
+  .pill.purple{ background:var(--purple-soft); color:var(--purple); }
+
+  .feature{
+    display:grid;
+    grid-template-columns: 22px 1fr;
+    gap:10px 14px;
+    margin: 18px 0;
+  }
+  .feature dt{
+    grid-column:1;
+    font-family:"JetBrains Mono",monospace;
+    color:var(--gold);
+    font-size:13px;
+    padding-top:1px;
+  }
+  .feature dd{
+    grid-column:2;
+    margin:0;
+  }
+  .feature dd .flabel{
+    display:block; font-weight:700; color:var(--text); margin-bottom:2px;
+  }
+
+  .contact-card{
+    background: linear-gradient(155deg, var(--surface) 0%, var(--surface-2) 100%);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:24px;
+    box-shadow: var(--shadow);
+    margin-top: 8px;
+  }
+  .contact-row{
+    display:flex; align-items:center; justify-content:space-between;
+    gap:12px; padding: 10px 0;
+    border-bottom:1px dashed var(--border);
+    font-size:14.5px;
+  }
+  .contact-row:last-child{ border-bottom:none; }
+  .contact-row .k{ color:var(--muted); }
+  .contact-row .v{ font-weight:600; text-align:right; }
+  .contact-row .v a{ color:var(--text); }
+
+  footer{
+    max-width:700px;
+    margin: 56px 0 0;
+    padding-top: 20px;
+    border-top:1px solid var(--border);
+    color:var(--muted);
+    font-size:12.5px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    * { scroll-behavior:auto !important; transition:none !important; }
+  }
+  html{ scroll-behavior:smooth; }
+</style>
 </head>
 <body>
-  <h1>ClockEasy – Informativa sulla Privacy</h1>
-  <p class="muted">Ultimo aggiornamento: 30 gennaio 2026</p>
 
-  <h2>Titolare del trattamento</h2>
-  <p>Alex Argese – Email: <a href="mailto:argesealex@gmail.com">argesealex@gmail.com</a></p>
+<div class="shell">
+  <div class="masthead">
+    <div class="brand">
+      <div class="brand-mark">CE</div>
+      <div class="brand-name">ClockEasy</div>
+    </div>
+    <div class="masthead-meta">Informativa sulla Privacy<br>Ultimo aggiornamento: 30 gennaio 2026</div>
+  </div>
 
-  <h2>Dati trattati</h2>
-  <ul>
-    <li>Dati di account (es. email) necessari per autenticazione.</li>
-    <li>Dati di utilizzo dell’app legati alle timbrature presenze (es. orari, identificativi necessari al servizio).</li>
-    <li>Dati tecnici (es. log, informazioni di dispositivo) per sicurezza e funzionamento.</li>
-  </ul>
+  <div class="toc-wrap">
+    <nav class="toc" aria-label="Indice dell'informativa">
+      <div class="toc-title">Indice</div>
+      <ol id="toc-list">
+        <li><a href="#chi-siamo"><span class="n">01</span>Il Titolare</a></li>
+        <li><a href="#ruoli"><span class="n">02</span>Come funziona ClockEasy</a></li>
+        <li><a href="#dati"><span class="n">03</span>Dati trattati</a></li>
+        <li><a href="#finalita"><span class="n">04</span>Finalità e basi giuridiche</a></li>
+        <li><a href="#funzioni"><span class="n">05</span>Funzionalità nel dettaglio</a></li>
+        <li><a href="#conservazione"><span class="n">06</span>Conservazione</a></li>
+        <li><a href="#destinatari"><span class="n">07</span>Destinatari e fornitori</a></li>
+        <li><a href="#trasferimenti"><span class="n">08</span>Trasferimenti extra‑UE</a></li>
+        <li><a href="#sicurezza"><span class="n">09</span>Sicurezza</a></li>
+        <li><a href="#diritti"><span class="n">10</span>I tuoi diritti</a></li>
+        <li><a href="#minori"><span class="n">11</span>Minori</a></li>
+        <li><a href="#modifiche"><span class="n">12</span>Modifiche</a></li>
+        <li><a href="#contatti"><span class="n">13</span>Contatti</a></li>
+      </ol>
+    </nav>
+  </div>
 
-  <h2>Finalità</h2>
-  <ul>
-    <li>Fornire le funzionalità dell’app (login, gestione presenze/timbrature).</li>
-    <li>Sicurezza, prevenzione abusi e diagnostica.</li>
-    <li>Assistenza e supporto agli utenti.</li>
-  </ul>
+  <main>
+    <span class="eyebrow">Ai sensi degli artt. 13–14 del Regolamento (UE) 2016/679</span>
+    <h1 class="title">Informativa sulla Privacy di ClockEasy</h1>
+    <p class="subtitle">Come trattiamo i dati personali di chi usa ClockEasy — l'app per la gestione di presenze, documenti, comunicazioni interne e segnalazioni whistleblowing — e di chi rappresenta un'azienda cliente.</p>
 
-  <h2>Base giuridica</h2>
-  <p>Esecuzione del servizio richiesto dall’utente e obblighi di sicurezza/gestione tecnica del servizio.</p>
+    <div class="fact-card">
+      <div class="fact-grid">
+        <div>
+          <div class="fact-label">Titolare del trattamento</div>
+          <div class="fact-value">Alex Argese, titolare di ClockEasy</div>
+        </div>
+        <div>
+          <div class="fact-label">Codice fiscale</div>
+          <div class="fact-value">RGSLXA01T03F376P</div>
+        </div>
+        <div>
+          <div class="fact-label">Contatto privacy</div>
+          <div class="fact-value"><a href="mailto:argesealex@gmail.com">argesealex@gmail.com</a></div>
+        </div>
+        <div>
+          <div class="fact-label">Applicazione</div>
+          <div class="fact-value">ClockEasy — iOS / Android (com.alexargese.clockeasy)</div>
+        </div>
+      </div>
+    </div>
 
-  <h2>Conservazione</h2>
-  <p>I dati vengono conservati per il tempo necessario a fornire il servizio e secondo eventuali obblighi di legge applicabili.</p>
+    <!-- 01 -->
+    <section class="doc-section" id="chi-siamo">
+      <div class="sec-head"><span class="sec-num">01</span><h2>Chi è il Titolare del trattamento</h2></div>
+      <p>ClockEasy è sviluppata e fornita da <strong>Alex Argese</strong> (di seguito, "ClockEasy" o "noi"), che ne cura lo sviluppo, l'infrastruttura tecnica e i rapporti con le aziende che la utilizzano. Operiamo attualmente come persona fisica, in fase di costituzione di posizione IVA; il codice fiscale sopra indicato identifica il Titolare fino al completamento di tale iter.</p>
+      <p>Per qualunque comunicazione relativa alla presente informativa o al trattamento dei tuoi dati personali puoi scriverci a <a href="mailto:argesealex@gmail.com">argesealex@gmail.com</a>. Non abbiamo nominato un Responsabile della Protezione dei Dati (DPO) poiché la nostra attività non rientra nei casi per cui l'art. 37 GDPR ne rende obbligatoria la designazione; restiamo comunque a disposizione per qualsiasi richiesta relativa alla protezione dei tuoi dati.</p>
+    </section>
 
-  <h2>Condivisione</h2>
-  <p>I dati possono essere trattati tramite fornitori tecnici (es. hosting/backend, servizi di autenticazione) strettamente necessari all’erogazione del servizio.</p>
+    <!-- 02 -->
+    <section class="doc-section" id="ruoli">
+      <div class="sec-head"><span class="sec-num">02</span><h2>Come funziona ClockEasy, e chi fa cosa</h2></div>
+      <div class="lede">ClockEasy veste due ruoli diversi a seconda di chi sei: <strong>Titolare del trattamento</strong> nei confronti dell'azienda che sottoscrive il servizio, e <strong>Responsabile del trattamento</strong> nei confronti dei dipendenti che lo usano ogni giorno per timbrare, leggere documenti o comunicazioni.</div>
+      <p>ClockEasy è un'applicazione di gestione del personale (presenze, documenti, comunicazioni interne, canale whistleblowing) che le aziende clienti ("Cliente" o "datore di lavoro") attivano per i propri dipendenti ("Utenti finali"). Questo comporta due rapporti distinti:</p>
+      <div class="feature">
+        <dt>A</dt>
+        <dd><span class="flabel">Nei confronti dell'azienda cliente</span>Quando un'organizzazione sottoscrive ClockEasy, tratta i dati dei propri referenti (nome, email, telefono aziendale) per gestire il contratto, la fatturazione e l'assistenza. In questo rapporto ClockEasy è <strong>Titolare del trattamento</strong>.</dd>
+        <dt>B</dt>
+        <dd><span class="flabel">Nei confronti dei dipendenti (Utenti finali)</span>I dati che vedi nel tuo profilo, nelle timbrature, nei documenti e nelle segnalazioni sono trattati da ClockEasy <strong>per conto del tuo datore di lavoro</strong>, secondo le sue istruzioni e nei limiti stabiliti dal contratto tra ClockEasy e l'azienda. In questo rapporto ClockEasy è <strong>Responsabile del trattamento</strong> (art. 28 GDPR): è il tuo datore di lavoro a decidere quali funzionalità attivare, chi tra i colleghi (es. i team leader) può vedere i tuoi orari, e per quanto tempo conservare i tuoi dati.</dd>
+      </div>
+      <p>In pratica: se sei un dipendente e vuoi esercitare un diritto sui tuoi dati (accesso, rettifica, cancellazione), la richiesta va rivolta in primo luogo al tuo datore di lavoro, che resta il Titolare delle informazioni che ti riguardano; ClockEasy collabora con l'azienda per dare seguito alla richiesta ed è comunque raggiungibile direttamente ai contatti in fondo a questa pagina.</p>
+      <p><strong>Nota sulla registrazione:</strong> non è possibile creare un account ClockEasy in autonomia. La app verifica che l'indirizzo email sia già stato inserito dal datore di lavoro nel proprio gestionale aziendale prima di consentire la registrazione: è quindi l'azienda a decidere chi può accedere al servizio.</p>
+    </section>
 
-  <h2>Diritti dell’utente</h2>
-  <p>Puoi richiedere accesso, rettifica o cancellazione dei tuoi dati scrivendo a
-    <a href="mailto:argesealex@gmail.com">argesealex@gmail.com</a>.
-  </p>
+    <!-- 03 -->
+    <section class="doc-section" id="dati">
+      <div class="sec-head"><span class="sec-num">03</span><h2>Quali dati trattiamo</h2></div>
+      <p>Non tutte le categorie seguenti si applicano a tutti: dipendono dalle funzionalità che il tuo datore di lavoro ha attivato e da come le usi.</p>
 
-  <h2>Contatti</h2>
-  <p>Per qualsiasi richiesta sulla privacy: <a href="mailto:argesealex@gmail.com">argesealex@gmail.com</a></p>
+      <h3>Dati dei referenti delle aziende clienti</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Categoria</th><th>Esempi</th></tr></thead>
+        <tbody>
+          <tr><td>Identificativi e contatto</td><td>Nome, cognome, email e telefono aziendali, ruolo in azienda</td></tr>
+          <tr><td>Dati dell'organizzazione</td><td>Ragione sociale, settore, dimensione, sede</td></tr>
+        </tbody>
+      </table></div>
+
+      <h3>Dati degli Utenti finali (dipendenti)</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Categoria</th><th>Esempi</th></tr></thead>
+        <tbody>
+          <tr><td>Anagrafica</td><td>Nome, cognome, data e luogo di nascita, codice fiscale</td></tr>
+          <tr><td>Contatti</td><td>Email, numero di cellulare, contatto di emergenza</td></tr>
+          <tr><td>Residenza</td><td>Indirizzo, città, provincia, CAP</td></tr>
+          <tr><td>Dati lavorativi</td><td>Sede di lavoro, data di assunzione, stato dell'account, eventuale ruolo di team leader</td></tr>
+          <tr><td>Presenze</td><td>Data e ora di ogni ingresso/uscita rilevata tramite scansione del QR code aziendale, eventuali note su uscite anticipate</td></tr>
+          <tr><td>Documenti</td><td>Buste paga, certificati di malattia, copia del documento d'identità, contratti e altri documenti caricati dall'azienda o dal dipendente, e relativa presa visione/firma</td></tr>
+          <tr><td>Segnalazioni whistleblowing</td><td>Titolo, descrizione, allegati e messaggi di una segnalazione, in forma nominativa oppure anonima</td></tr>
+          <tr><td>Comunicazioni interne</td><td>Contenuti pubblicati dall'azienda e stato di lettura</td></tr>
+          <tr><td>Autenticazione</td><td>Email, password (gestita da Firebase Authentication: ClockEasy non la vede né la conserva in chiaro), identificativo utente univoco, stato di verifica dell'email</td></tr>
+          <tr><td>Dati tecnici minimi</td><td>Token di notifica push e piattaforma del dispositivo (iOS/Android); indirizzo IP nei log tecnici del server, per sicurezza</td></tr>
+        </tbody>
+      </table></div>
+
+      <p><strong>Cosa non raccogliamo.</strong> ClockEasy non richiede né utilizza la posizione GPS del dispositivo: la timbratura avviene esclusivamente tramite lettura di un QR code fisico presente sul luogo di lavoro. L'app non integra strumenti pubblicitari, cookie di profilazione o SDK di analisi comportamentale di terze parti: la fotocamera del dispositivo viene attivata solo per inquadrare il QR code e non salva né trasmette alcuna immagine.</p>
+    </section>
+
+    <!-- 04 -->
+    <section class="doc-section" id="finalita">
+      <div class="sec-head"><span class="sec-num">04</span><h2>Perché trattiamo questi dati, e su quale base</h2></div>
+
+      <h3>Come Responsabile, per conto del tuo datore di lavoro</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Finalità</th><th>Base giuridica</th></tr></thead>
+        <tbody>
+          <tr><td>Rilevazione di presenze e orario di lavoro</td><td>Esecuzione del contratto di lavoro; obblighi di legge in materia di orario di lavoro</td></tr>
+          <tr><td>Gestione dell'anagrafica e dei dati di contatto</td><td>Esecuzione del contratto di lavoro</td></tr>
+          <tr><td>Distribuzione e conservazione di documenti (buste paga, contratti, certificati)</td><td>Obblighi di legge in materia fiscale, previdenziale e giuslavoristica; esecuzione del contratto</td></tr>
+          <tr><td>Canale interno di segnalazione (whistleblowing)</td><td>Obbligo di legge (D.Lgs. 24/2023, attuativo della Direttiva UE 2019/1937)</td></tr>
+          <tr><td>Comunicazioni aziendali interne</td><td>Legittimo interesse del datore di lavoro all'organizzazione interna, su sua istruzione</td></tr>
+          <tr><td>Autenticazione e sicurezza dell'account</td><td>Esecuzione del contratto; legittimo interesse alla sicurezza dei sistemi</td></tr>
+          <tr><td>Notifiche push (nuovi documenti, comunicazioni, promemoria)</td><td>Esecuzione del contratto, previa attivazione delle notifiche sul dispositivo</td></tr>
+        </tbody>
+      </table></div>
+
+      <h3>Come Titolare, nei confronti delle aziende clienti</h3>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Finalità</th><th>Base giuridica</th></tr></thead>
+        <tbody>
+          <tr><td>Attivazione e gestione del contratto di fornitura del servizio</td><td>Esecuzione del contratto / misure precontrattuali (art. 6.1.b GDPR)</td></tr>
+          <tr><td>Assistenza e comunicazioni relative al servizio</td><td>Esecuzione del contratto; legittimo interesse</td></tr>
+          <tr><td>Adempimenti fiscali e contabili</td><td>Obbligo di legge (art. 6.1.c GDPR)</td></tr>
+          <tr><td>Comunicazioni su aggiornamenti o nuove funzionalità</td><td>Legittimo interesse, con possibilità di opporsi in qualsiasi momento</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <!-- 05 -->
+    <section class="doc-section" id="funzioni">
+      <div class="sec-head"><span class="sec-num">05</span><h2>Le funzionalità che trattano più dati, spiegate</h2></div>
+
+      <h3>Timbratura tramite QR code</h3>
+      <p>Per registrare ingresso e uscita, l'app attiva la fotocamera solo per inquadrare un QR code esposto sul luogo di lavoro. Dal QR viene letto un codice che, insieme all'orario del server, genera la timbratura: non viene salvata alcuna immagine né rilevata la posizione geografica del dispositivo. I team leader designati dall'azienda possono consultare un riepilogo essenziale (nome, cognome, sede, orario di ingresso/uscita) limitato al personale delle sedi di loro competenza, per finalità organizzative stabilite dal datore di lavoro.</p>
+
+      <h3>Documenti e firma</h3>
+      <p>L'azienda può caricare documenti destinati a uno o più dipendenti (es. buste paga, contratti, comunicazioni formali); il dipendente può a sua volta caricare documenti personali (es. certificato di malattia, copia del documento d'identità). Alcuni documenti richiedono una presa visione o firma da parte del dipendente, di cui viene conservata traccia. I file sono resi disponibili tramite link temporanei e protetti, generati al momento della consultazione.</p>
+
+      <h3>Canale whistleblowing</h3>
+      <p>ClockEasy mette a disposizione un canale interno di segnalazione conforme al D.Lgs. 24/2023. Puoi inviare una segnalazione in forma <strong>nominativa</strong> (collegata al tuo account) oppure <strong>anonima</strong>: in questo secondo caso non viene registrata alcuna informazione che ti identifichi, e ricevi un protocollo e un token personale, utilizzabili solo da te per rientrare nel thread e leggere le risposte. Gli eventuali allegati caricati vengono sottoposti a scansione antivirus prima di essere resi disponibili. L'accesso alle segnalazioni è riservato ai soggetti incaricati della loro gestione, nel rispetto della riservatezza prevista dalla normativa whistleblowing.</p>
+
+      <h3>Comunicazioni interne e notifiche push</h3>
+      <p>L'azienda può pubblicare comunicazioni interne visibili nell'app. Per avvisarti di nuovi documenti, comunicazioni o promemoria (es. per i team leader, il riepilogo presenze) l'app può inviarti notifiche push tramite il servizio Expo, a cui viene associato un token univoco del tuo dispositivo: puoi disattivare le notifiche in qualsiasi momento dalle impostazioni del sistema operativo.</p>
+
+      <h3>Eliminazione dell'account</h3>
+      <p>Dalla sezione Profilo puoi richiedere in autonomia l'eliminazione del tuo account ClockEasy: l'accesso all'app viene rimosso definitivamente. I dati che il datore di lavoro è tenuto per legge a conservare — ad esempio buste paga, dati contributivi o registri di presenza — restano archiviati dall'azienda secondo i propri obblighi, indipendentemente dalla cancellazione dell'account app.</p>
+    </section>
+
+    <!-- 06 -->
+    <section class="doc-section" id="conservazione">
+      <div class="sec-head"><span class="sec-num">06</span><h2>Per quanto tempo conserviamo i dati</h2></div>
+      <p>Conserviamo i dati degli Utenti finali per la durata del contratto tra ClockEasy e l'azienda cliente e secondo le istruzioni di quest'ultima, che resta responsabile di definire i tempi di conservazione applicabili in base al rapporto di lavoro e alla normativa di settore (indicativamente, i documenti con rilevanza fiscale, contributiva o previdenziale possono dover essere conservati fino a 10 anni; le segnalazioni whistleblowing sono conservate per il periodo previsto dal D.Lgs. 24/2023).</p>
+      <p>Al termine del rapporto contrattuale con un'azienda cliente, o su sua richiesta, i dati vengono cancellati o resi anonimi entro un termine ragionevole (di norma non superiore a 12 mesi), salvi i tempi più lunghi necessari per adempiere a obblighi di legge o per far valere o difendere un diritto in sede giudiziaria. I dati dei referenti delle aziende clienti sono conservati per la durata del rapporto commerciale e per il periodo successivo previsto dagli obblighi fiscali e contabili.</p>
+    </section>
+
+    <!-- 07 -->
+    <section class="doc-section" id="destinatari">
+      <div class="sec-head"><span class="sec-num">07</span><h2>Chi ha accesso ai dati</h2></div>
+      <p>I tuoi dati possono essere conosciuti da:</p>
+      <ul>
+        <li>Personale del datore di lavoro autorizzato (es. amministrazione HR, team leader) nei limiti delle proprie funzioni;</li>
+        <li>Alex Argese, in qualità di sviluppatore e amministratore tecnico del servizio, nella misura necessaria a fornire assistenza e manutenzione;</li>
+        <li>Fornitori terzi che erogano infrastruttura tecnica per nostro conto, in qualità di Responsabili o Sub-responsabili del trattamento, elencati di seguito.</li>
+      </ul>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Fornitore</th><th>Funzione</th></tr></thead>
+        <tbody>
+          <tr><td>Google Firebase (Google Ireland Ltd. / Google LLC)</td><td>Autenticazione degli account (email e password), invio delle email di verifica e reset password</td></tr>
+          <tr><td>Render (Render Services, Inc.)</td><td>Hosting del server e del database che fanno funzionare l'app</td></tr>
+          <tr><td>Expo / EAS (650 Industries, Inc.)</td><td>Invio delle notifiche push e distribuzione degli aggiornamenti dell'app</td></tr>
+          <tr><td>Apple Inc. e Google LLC</td><td>Distribuzione dell'app tramite App Store e Google Play, secondo le rispettive informative</td></tr>
+        </tbody>
+      </table></div>
+      <p>Non vendiamo né cediamo i tuoi dati a fini pubblicitari o di marketing di terze parti, in nessuna circostanza.</p>
+    </section>
+
+    <!-- 08 -->
+    <section class="doc-section" id="trasferimenti">
+      <div class="sec-head"><span class="sec-num">08</span><h2>Trasferimenti di dati fuori dall'UE</h2></div>
+      <p>Alcuni dei fornitori indicati al punto precedente (in particolare Google e i fornitori dei servizi di notifica) hanno sede negli Stati Uniti o possono trattare dati anche al di fuori dello Spazio Economico Europeo. In questi casi, il trasferimento avviene sulla base di garanzie adeguate previste dal GDPR, come le Clausole Contrattuali Standard approvate dalla Commissione Europea, adottate dai fornitori stessi nell'ambito dei rispettivi programmi di conformità.</p>
+    </section>
+
+    <!-- 09 -->
+    <section class="doc-section" id="sicurezza">
+      <div class="sec-head"><span class="sec-num">09</span><h2>Come proteggiamo i tuoi dati</h2></div>
+      <div class="feature">
+        <dt>→</dt>
+        <dd><span class="flabel">Autenticazione a token</span>L'accesso all'app e alle sue funzionalità avviene tramite token di sessione rilasciati da Firebase Authentication; la password non viene mai vista né conservata in chiaro da ClockEasy.</dd>
+        <dt>→</dt>
+        <dd><span class="flabel">Cifratura in transito</span>Tutte le comunicazioni tra l'app e i server avvengono tramite connessioni cifrate (HTTPS/TLS).</dd>
+        <dt>→</dt>
+        <dd><span class="flabel">Controllo antivirus sugli allegati</span>Gli allegati caricati nel canale whistleblowing sono sottoposti a scansione antivirus prima di poter essere scaricati.</dd>
+        <dt>→</dt>
+        <dd><span class="flabel">Accesso per ruolo</span>Le informazioni (es. le presenze visibili ai team leader) sono limitate al perimetro organizzativo di competenza di ciascun ruolo, secondo le istruzioni dell'azienda cliente.</dd>
+        <dt>→</dt>
+        <dd><span class="flabel">Link ai documenti temporanei</span>I documenti personali non sono raggiungibili tramite URL permanenti: ogni consultazione genera un link di accesso limitato nel tempo.</dd>
+      </div>
+      <p>Nonostante le misure adottate, nessun sistema è invulnerabile al 100%: in caso di violazione dei dati personali che comporti un rischio per i tuoi diritti, seguiremo le procedure di notifica previste dagli artt. 33 e 34 GDPR, informando l'azienda cliente e, ove richiesto dalla legge, l'Autorità Garante e gli interessati coinvolti.</p>
+    </section>
+
+    <!-- 10 -->
+    <section class="doc-section" id="diritti">
+      <div class="sec-head"><span class="sec-num">10</span><h2>I tuoi diritti</h2></div>
+      <p>In qualità di interessato, hai diritto a:</p>
+      <ul>
+        <li><strong>Accesso</strong> — ottenere conferma che i tuoi dati siano trattati e riceverne una copia;</li>
+        <li><strong>Rettifica</strong> — correggere dati inesatti o incompleti;</li>
+        <li><strong>Cancellazione</strong> — ottenere la cancellazione dei dati, nei limiti degli obblighi di legge applicabili;</li>
+        <li><strong>Limitazione</strong> — chiedere di limitare il trattamento in determinati casi;</li>
+        <li><strong>Portabilità</strong> — ricevere i dati che ci hai fornito in un formato strutturato e leggibile;</li>
+        <li><strong>Opposizione</strong> — opporti a un trattamento basato sul legittimo interesse;</li>
+        <li><strong>Revoca del consenso</strong> — quando il trattamento si basa sul consenso (es. notifiche push), in qualsiasi momento, senza pregiudicare la liceità del trattamento svolto fino a quel momento;</li>
+        <li><strong>Reclamo</strong> — rivolgerti all'Autorità Garante per la protezione dei dati personali (www.garanteprivacy.it), se ritieni che il trattamento violi il GDPR.</li>
+      </ul>
+      <p>Se sei un dipendente di un'azienda cliente, per la maggior parte dei dati sopra descritti il Titolare a cui rivolgere la richiesta è il tuo datore di lavoro; puoi comunque scrivere direttamente a ClockEasy, che darà seguito alla richiesta in collaborazione con l'azienda. Per i dati trattati da ClockEasy come Titolare (es. referenti aziendali), puoi rivolgerti a noi direttamente.</p>
+    </section>
+
+    <!-- 11 -->
+    <section class="doc-section" id="minori">
+      <div class="sec-head"><span class="sec-num">11</span><h2>Minori</h2></div>
+      <p>ClockEasy è un servizio destinato esclusivamente all'uso professionale da parte di persone maggiorenni, in qualità di dipendenti o collaboratori di un'azienda cliente. Non è consentita la creazione di account da parte di minori o di soggetti privi della capacità di stipulare un contratto di lavoro. Qualora venissimo a conoscenza di un utilizzo da parte di un minore, provvederemo a rimuovere l'account e i relativi dati.</p>
+    </section>
+
+    <!-- 12 -->
+    <section class="doc-section" id="modifiche">
+      <div class="sec-head"><span class="sec-num">12</span><h2>Modifiche a questa informativa</h2></div>
+      <p>Possiamo aggiornare periodicamente questa informativa, ad esempio in caso di nuove funzionalità dell'app o di modifiche normative. In caso di modifiche sostanziali, te ne daremo comunicazione tramite l'app o via email prima che diventino efficaci. Ti invitiamo a consultare questa pagina periodicamente: la data di ultimo aggiornamento è indicata in alto.</p>
+    </section>
+
+    <!-- 13 -->
+    <section class="doc-section" id="contatti">
+      <div class="sec-head"><span class="sec-num">13</span><h2>Contatti</h2></div>
+      <p>Per qualsiasi domanda su questa informativa o sul trattamento dei tuoi dati personali:</p>
+      <div class="contact-card">
+        <div class="contact-row"><span class="k">Titolare</span><span class="v">Alex Argese</span></div>
+        <div class="contact-row"><span class="k">Codice fiscale</span><span class="v">RGSLXA01T03F376P</span></div>
+        <div class="contact-row"><span class="k">Email</span><span class="v"><a href="mailto:argesealex@gmail.com">argesealex@gmail.com</a></span></div>
+        <div class="contact-row"><span class="k">Recapito postale</span><span class="v">Largo Mario Perrone, 2 — 72015 Fasano (BR), Italia</span></div>
+      </div>
+    </section>
+
+    <footer>
+      Questa informativa riguarda l'applicazione ClockEasy e i trattamenti descritti ai punti 1–13. È redatta ai sensi del Regolamento (UE) 2016/679 (GDPR) e, per il canale di segnalazione interna, del D.Lgs. 24/2023.
+    </footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  try{
+    var links = Array.prototype.slice.call(document.querySelectorAll('#toc-list a'));
+    var sections = links.map(function(a){
+      return document.getElementById(a.getAttribute('href').slice(1));
+    });
+    function onScroll(){
+      var pos = window.scrollY + 120;
+      var current = sections[0];
+      for (var i=0;i<sections.length;i++){
+        if (sections[i] && sections[i].offsetTop <= pos) current = sections[i];
+      }
+      links.forEach(function(a){ a.classList.remove('active'); });
+      if (current){
+        var match = links.find(function(a){ return a.getAttribute('href') === '#' + current.id; });
+        if (match) match.classList.add('active');
+      }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  } catch(e) {}
+})();
+</script>
 </body>
 </html>
